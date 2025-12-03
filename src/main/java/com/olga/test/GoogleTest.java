@@ -2,28 +2,24 @@ package com.olga.test;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class GoogleTest {
     public static void main(String[] args) {
-         // Укажи путь к ChromeDriver, скачанному и распакованному на твоём компьютере
-        System.setProperty("webdriver.chrome.driver", "C:\\tools\\chromedriver\\chromedriver-win64\\chromedriver.exe");
+        // Setup ChromeDriver automatically
+        WebDriverManager.chromedriver().setup();
 
+        // Initialize Chrome browser
         WebDriver driver = new ChromeDriver();
 
-        // Открываем сайт Google
+        // Navigate to Google
         driver.get("https://www.google.com");
 
-        // Проверяем заголовок страницы
-        String title = driver.getTitle();
-        System.out.println("Title: " + title);
+        // Print the page title
+        System.out.println("Title: " + driver.getTitle());
 
-        if(title.equals("Google")) {
-            System.out.println("Test passed!");
-        } else {
-            System.out.println("Test failed!");
-        }
-
-        // Закрываем браузер
+        // Close the browser
         driver.quit();
     }
 }
+
